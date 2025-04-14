@@ -6,11 +6,12 @@ import pickle
 from PIL import Image
 import io
 import os
+import tensorflow as tf
 
 app = Flask(__name__)
 
 # Load the trained model and class labels
-model = load_model("crop_disease_model.h5")
+model = load_model("crop_disease_model.h5", custom_objects={'InputLayer': tf.keras.layers.InputLayer})
 
 with open("class_labels.pkl", "rb") as f:
     class_labels = pickle.load(f)
